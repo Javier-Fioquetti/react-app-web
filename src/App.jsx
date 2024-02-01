@@ -6,13 +6,13 @@ import UserTable from "./components/UserTable";
 function App() {
   return (
     <>
-      <div className="d-flex flex-nowrap flex-column w-auto">
+      <div className="container">
         <h1 className="text-center pt-3">CRUD App with hooks</h1>
-        <div className="d-flex flex-row m-5 row-12">
-          <div className="flex-column m-2 col-6">
+        <div className="row mt-3">
+          <div className="col-lg-6 col-md-12 mt-2">
             <Formulario />
           </div>
-          <div className="flex-column m-2 col-6">
+          <div className="col-lg-6 col-md-12 mt-2">
             <UserTable />
           </div>
         </div>
