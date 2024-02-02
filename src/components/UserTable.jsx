@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function UserTable() {
+export default function UserTable(props) {
+  console.log(props.users);
   return (
     <>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr className="table-primary">
             <th scope="col">#</th>
@@ -15,32 +16,34 @@ export default function UserTable() {
           </tr>
         </thead>
         <tbody>
-          <tr className="table-danger">
-            <th scope="row">1</th>
-            <td>Otto</td>
-            <td>Smith</td>
-            <td>@lev</td>
-            <td>Smith</td>
-            <td>@lev</td>
-          </tr>
-          <tr className="table-secondary">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Smith</td>
-            <td>@lev</td>
-          </tr>
-          <tr className="table-warning">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td>Smith</td>
-            <td>@lev</td>
-          </tr>
+          {props.users.length > 0 ? (
+            props.users.map((user) => (
+              <>
+                <tr key={user.id} className="table-danger">
+                  <th scope="row">1</th>
+                  <td>{user.nombre}</td>
+                  <td>{user.apellido}</td>
+                  <td>{user.origen}</td>
+                  <td>{user.destino}</td>
+                  <td>{user.ida}</td>
+                  <td>
+                    <button className="btn btn-info d-inline m-1">
+                      <strong>Editar</strong>
+                    </button>
+                    <button className="btn btn-info d-inline m-1">
+                      <strong>Borrar</strong>
+                    </button>
+                  </td>
+                </tr>
+              </>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={3}>No users</td>
+            </tr>
+          )}
         </tbody>
       </table>
-      ;
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Formulario() {
+export default function Formulario(props) {
   const {
     register,
     handleSubmit,
@@ -11,8 +11,7 @@ export default function Formulario() {
   } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
-
+    props.addUser(data);
     alert("Enviando datos");
 
     reset();
@@ -66,7 +65,6 @@ export default function Formulario() {
             <input
               className="form-check-input"
               type="radio"
-              id="inlineRadio1"
               value="option1"
               name="flexRadioDefault"
             />
@@ -78,13 +76,8 @@ export default function Formulario() {
             <input
               className="form-check-input"
               type="radio"
-              id="inlineRadio2"
               value="option2"
-              {...register("flexRadioDefault", {
-                required: {
-                  value: true,
-                },
-              })}
+              {...register("flexRadioDefault")}
             />
 
             <label className="form-check-label" htmlFor="inlineRadio2">
@@ -98,13 +91,19 @@ export default function Formulario() {
           </label>
           <select
             className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-            id="PaisOrigen"
             {...register("paisOrigen", {
               required: {
                 value: true,
+                message: "Debe indicar un país",
               },
             })}
           >
+            {errors.paisOrigen && (
+              <span className="fs-6 text-danger">
+                {errors.paisOrigen.message}
+              </span>
+            )}
+
             <option value="...">-</option>
             <option value="Argentina">Argentina</option>
             <option value="Brasil">Brasil</option>
@@ -122,9 +121,18 @@ export default function Formulario() {
           </label>
           <select
             className="d-block control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-            id="PaisOrigen"
-            {...register("paisDestino")}
+            {...register("paisDestino", {
+              required: {
+                value: true,
+                message: "ingrese un país",
+              },
+            })}
           >
+            {errors.paisDestino && (
+              <span className="fs-6 text-danger">
+                {errors.paisDestino.message}
+              </span>
+            )}
             <option value="...">-</option>
             <option value="Argentina">Argentina</option>
             <option value="Brasil">Brasil</option>
