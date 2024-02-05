@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { v4 as uuidv4 } from "uuid";
 import UserTable from "./components/UserTable";
 import Formulario from "./components/Formulario";
+import EditUserForm from "./components/EditUserForm";
 
 function App() {
   const userData = [
@@ -12,7 +13,7 @@ function App() {
       apellido: "Pérez",
       origen: "Argentina",
       destino: "España",
-      flexRadioDefault: "Ida y Vuelta",
+      ida: "Ida y Vuelta",
     },
     {
       id: uuidv4(),
@@ -39,8 +40,39 @@ function App() {
     setUsers([...users, user]);
   };
 
-  const deleteUser = (id) => {
-    setUser(user.filter((user) => user.id == !id));
+  //Eliminar usuario
+  const borrarUsuario = (id) => {
+    const arrayFiltrado = users.filter((user) => user.id !== id);
+    setUsers(arrayFiltrado);
+  };
+
+  //Editar usuario
+  const [editing, setEditing] = useState(false);
+
+  const [currentUser, setCurrentUser] =useState({
+    id: null,
+      nombre: "",
+      apellido: "",
+      origen: "",
+      destino: "",
+      ida: "", 
+  });
+
+  const editFila = (user) =>{
+    setEditing(true)
+    setCurrentUser ({
+      id: user.id,
+      nombre: user.nombre,
+                 apellido: user.apellido,
+                  origen: user.origen,
+                  destino: user.destino,
+                  ida: flexRadioDefault,
+    })
+  }
+
+  //const editUser = (user) => {
+    //user.id = uuidv4();
+    //setUsers([...users, user]);
   };
 
   return (
@@ -49,10 +81,22 @@ function App() {
         <h1 className="text-center pt-3">CRUD App with hooks</h1>
         <div className="row mt-3">
           <div className="col-lg-6 col-md-12 mt-2">
-            <Formulario addUser={addUser} />
+            {editing ? (
+              <div>
+                <EditUserForm currentUser={currentUser} />
+              </div>
+            ) : (
+              <div>
+                <Formulario addUser={addUser} />
+              </div>
+            )}
           </div>
           <div className="col-lg-6 col-md-12 mt-2">
-            <UserTable users={users} />
+            <UserTable
+              users={users}
+              borrarUsuario={borrarUsuario}
+              editFila={editFila}
+            />
           </div>
         </div>
       </div>

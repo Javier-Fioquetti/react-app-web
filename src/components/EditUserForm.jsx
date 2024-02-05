@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Formulario(props) {
+export default function EditUserForm(props) {
+  console.log(props.currentUser);
+
   const {
     register,
     handleSubmit,
@@ -11,7 +13,7 @@ export default function Formulario(props) {
   } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    props.addUser(data);
+    props.editUser(data);
     alert("Enviando datos");
 
     reset();
@@ -23,7 +25,7 @@ export default function Formulario(props) {
         onSubmit={onSubmit}
         className="d-flex flex-column mb-3 align-items-center container-fluid p-4 rounded bg-info bg-gradient w-75 border border-black"
       >
-        <h4>Agregar Pasajero</h4>
+        <h4>Editar Pasajero</h4>
         <input
           type="text"
           placeholder="Nombre"
@@ -168,7 +170,7 @@ export default function Formulario(props) {
         )}
 
         <button className="btn btn-primary" type="submit">
-          Agregar Pasajero
+          Editar Pasajero
         </button>
       </form>
     </>
