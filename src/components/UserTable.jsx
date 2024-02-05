@@ -25,12 +25,17 @@ export default function UserTable(props) {
                   <td>{user.apellido}</td>
                   <td>{user.origen}</td>
                   <td>{user.destino}</td>
-                  <td>{user.ida}</td>
+                  <td>{user.flexRadioDefault}</td>
                   <td>
                     <button className="btn btn-info d-inline m-1">
                       <strong>Editar</strong>
                     </button>
-                    <button className="btn btn-info d-inline m-1">
+                    <button
+                      className="btn btn-info d-inline m-1"
+                      onClick={() => {
+                        props.deleteUser(user.id);
+                      }}
+                    >
                       <strong>Borrar</strong>
                     </button>
                   </td>

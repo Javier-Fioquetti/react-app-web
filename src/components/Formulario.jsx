@@ -65,8 +65,8 @@ export default function Formulario(props) {
             <input
               className="form-check-input"
               type="radio"
-              value="option1"
-              name="flexRadioDefault"
+              value="Solo ida"
+              {...register("flexRadioDefault")}
             />
             <label className="form-check-label" htmlFor="inlineRadio1">
               Sólo Ida
@@ -76,7 +76,7 @@ export default function Formulario(props) {
             <input
               className="form-check-input"
               type="radio"
-              value="option2"
+              value="Ida y Vuelta"
               {...register("flexRadioDefault")}
             />
 
@@ -91,17 +91,15 @@ export default function Formulario(props) {
           </label>
           <select
             className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-            {...register("paisOrigen", {
+            {...register("origen", {
               required: {
                 value: true,
                 message: "Debe indicar un país",
               },
             })}
           >
-            {errors.paisOrigen && (
-              <span className="fs-6 text-danger">
-                {errors.paisOrigen.message}
-              </span>
+            {errors.origen && (
+              <span className="fs-6 text-danger">{errors.origen.message}</span>
             )}
 
             <option value="...">-</option>
@@ -121,17 +119,15 @@ export default function Formulario(props) {
           </label>
           <select
             className="d-block control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-            {...register("paisDestino", {
+            {...register("destino", {
               required: {
                 value: true,
                 message: "ingrese un país",
               },
             })}
           >
-            {errors.paisDestino && (
-              <span className="fs-6 text-danger">
-                {errors.paisDestino.message}
-              </span>
+            {errors.destino && (
+              <span className="fs-6 text-danger">{errors.destino.message}</span>
             )}
             <option value="...">-</option>
             <option value="Argentina">Argentina</option>
@@ -146,7 +142,7 @@ export default function Formulario(props) {
             <option value="Italia">Italia</option>
           </select>
         </div>
-        {watch("flexRadioDefault") === "option2" && (
+        {watch("flexRadioDefault") === "Ida y Vuelta" && (
           <>
             <label htmlFor="origen">
               <strong>Origen</strong>
@@ -155,7 +151,7 @@ export default function Formulario(props) {
               className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
               type="text"
               placeholder="País de Origen"
-              value={watch("paisDestino")}
+              value={watch("destino")}
               readOnly
             />
             <label htmlFor="origen">
@@ -165,7 +161,7 @@ export default function Formulario(props) {
               className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
               type="text"
               placeholder="País de Destino"
-              value={watch("paisOrigen")}
+              value={watch("origen")}
               readOnly
             />
           </>

@@ -12,7 +12,7 @@ function App() {
       apellido: "Pérez",
       origen: "Argentina",
       destino: "España",
-      ida: "Ida y Vuelta",
+      flexRadioDefault: "Ida y Vuelta",
     },
     {
       id: uuidv4(),
@@ -37,6 +37,10 @@ function App() {
   const addUser = (user) => {
     user.id = uuidv4();
     setUsers([...users, user]);
+  };
+
+  const deleteUser = (id) => {
+    setUser(user.filter((user) => user.id == !id));
   };
 
   return (
