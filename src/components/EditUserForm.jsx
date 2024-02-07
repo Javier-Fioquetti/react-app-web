@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function EditUserForm(props) {
+  //console.log(props.currentUser);
   const {
     register,
     handleSubmit,
@@ -13,14 +14,20 @@ export default function EditUserForm(props) {
     defaultValues: props.currentUser,
   });
 
-  setValue("nombre", props.currentUser.nombre);
-  setValue("apellido", props.currentUser.apellido);
-  setValue("origen", props.currentUser.origen);
-  setValue("destino", props.currentUser.destino);
-  setValue("flexRadioDefault", props.currentUser.flexRadioDefault);
+  useEffect(() => {
+    setValue("id", props.currentUser.id);
+    setValue("nombre", props.currentUser.nombre);
+    setValue("apellido", props.currentUser.apellido);
+    setValue("origen", props.currentUser.origen);
+    setValue("destino", props.currentUser.destino);
+    setValue("ida", props.currentUser.flexRadioDefault);
+  }, [props.currentUser, setValue]);
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+
+    props.updateUser(props.currentUser.id, data);
+
     alert("Enviando datos");
 
     reset();
@@ -69,7 +76,7 @@ export default function EditUserForm(props) {
         {errors.apellido && (
           <span className="fs-6 text-danger">{errors.apellido.message}</span>
         )}
-        <div className="d-flex p-3" {...register("chekPoints")}>
+        <div className="d-flex p-3">
           <div className="form-check form-check-inline m-2">
             <input
               className="form-check-input"

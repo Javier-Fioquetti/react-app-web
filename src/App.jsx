@@ -70,9 +70,11 @@ function App() {
     });
   };
 
-  //const editUser = (user) => {
-  //user.id = uuidv4();
-  //setUsers([...users, user]);
+  const updateUser = (id, updateUser) => {
+    setEditing(false);
+
+    setUsers(users.map((user) => (user.id === id ? updateUser : user)));
+  };
 
   return (
     <>
@@ -82,7 +84,10 @@ function App() {
           <div className="col-lg-6 col-md-12 mt-2">
             {editing ? (
               <div>
-                <EditUserForm currentUser={currentUser} />
+                <EditUserForm
+                  currentUser={currentUser}
+                  updateUser={updateUser}
+                />
               </div>
             ) : (
               <div>
@@ -94,7 +99,6 @@ function App() {
             <UserTable
               users={users}
               borrarUsuario={borrarUsuario}
-              setEditing={setEditing}
               editRow={editRow}
             />
           </div>
