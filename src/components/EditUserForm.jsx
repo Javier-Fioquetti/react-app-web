@@ -2,18 +2,25 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export default function EditUserForm(props) {
-  console.log(props.currentUser);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: props.currentUser,
+  });
+
+  setValue("nombre", props.currentUser.nombre);
+  setValue("apellido", props.currentUser.apellido);
+  setValue("origen", props.currentUser.origen);
+  setValue("destino", props.currentUser.destino);
+  setValue("flexRadioDefault", props.currentUser.flexRadioDefault);
 
   const onSubmit = handleSubmit((data) => {
-    props.editUser(data);
+    console.log(data);
     alert("Enviando datos");
 
     reset();

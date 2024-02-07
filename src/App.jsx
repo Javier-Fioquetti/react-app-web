@@ -49,31 +49,30 @@ function App() {
   //Editar usuario
   const [editing, setEditing] = useState(false);
 
-  const [currentUser, setCurrentUser] =useState({
+  const [currentUser, setCurrentUser] = useState({
     id: null,
-      nombre: "",
-      apellido: "",
-      origen: "",
-      destino: "",
-      ida: "", 
+    nombre: "",
+    apellido: "",
+    origen: "",
+    destino: "",
+    ida: "",
   });
 
-  const editFila = (user) =>{
-    setEditing(true)
-    setCurrentUser ({
+  const editRow = (user) => {
+    setEditing(true);
+    setCurrentUser({
       id: user.id,
       nombre: user.nombre,
-                 apellido: user.apellido,
-                  origen: user.origen,
-                  destino: user.destino,
-                  ida: flexRadioDefault,
-    })
-  }
+      apellido: user.apellido,
+      origen: user.origen,
+      destino: user.destino,
+      ida: user.flexRadioDefault,
+    });
+  };
 
   //const editUser = (user) => {
-    //user.id = uuidv4();
-    //setUsers([...users, user]);
-  };
+  //user.id = uuidv4();
+  //setUsers([...users, user]);
 
   return (
     <>
@@ -95,7 +94,8 @@ function App() {
             <UserTable
               users={users}
               borrarUsuario={borrarUsuario}
-              editFila={editFila}
+              setEditing={setEditing}
+              editRow={editRow}
             />
           </div>
         </div>

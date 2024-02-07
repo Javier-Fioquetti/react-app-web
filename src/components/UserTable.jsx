@@ -30,7 +30,7 @@ export default function UserTable(props) {
                     <button
                       className="btn btn-info d-inline m-1"
                       onClick={() => {
-                        props.editFila(true);
+                        props.editRow(user);
                       }}
                     >
                       <strong>Editar</strong>
