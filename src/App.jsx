@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { v4 as uuidv4 } from "uuid";
 import UserTable from "./components/UserTable";
 import Formulario from "./components/Formulario";
@@ -78,7 +79,7 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div className="container bg-warning bg-gradient w-100">
         <h1 className="text-center pt-3">CRUD App with hooks</h1>
         <div className="row mt-3">
           <div className="col-lg-6 col-md-12 mt-2">

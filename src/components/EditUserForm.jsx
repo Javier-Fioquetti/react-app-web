@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import { useForm } from "react-hook-form";
 
 export default function EditUserForm(props) {
@@ -37,7 +38,7 @@ export default function EditUserForm(props) {
     <>
       <form
         onSubmit={onSubmit}
-        className="d-flex flex-column mb-3 align-items-center container-fluid p-4 rounded bg-info bg-gradient w-75 border border-black"
+        className="d-flex flex-column mb-3 align-items-center container-fluid p-4 rounded bg-secondary bg-gradient w-75 border border-black"
       >
         <h4>Editar Pasajero</h4>
         <input
@@ -101,7 +102,9 @@ export default function EditUserForm(props) {
             </label>
           </div>
         </div>
-        <div className="d-flex p-3">
+        <h5 className="w-100 bg-primary bg-gradient text-center">Ida:</h5>
+
+        <div className="d-flex p-3 bg-success bg-gradient  rounded-pill">
           <label htmlFor="origen">
             <strong>Origen</strong>
           </label>
@@ -160,30 +163,35 @@ export default function EditUserForm(props) {
         </div>
         {watch("flexRadioDefault") === "Ida y Vuelta" && (
           <>
-            <label htmlFor="origen">
-              <strong>Origen</strong>
-            </label>
-            <input
-              className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-              type="text"
-              placeholder="País de Origen"
-              value={watch("destino")}
-              readOnly
-            />
-            <label htmlFor="origen">
-              <strong>Destino</strong>
-            </label>
-            <input
-              className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
-              type="text"
-              placeholder="País de Destino"
-              value={watch("origen")}
-              readOnly
-            />
+            <h5 className="mt-4 w-100 bg-primary bg-gradient text-center">
+              Vuelta:
+            </h5>
+            <div className="d-flex p-3 bg-success bg-gradient  rounded-pill mb-3">
+              <label htmlFor="origen">
+                <strong>Origen</strong>
+              </label>
+              <input
+                className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
+                type="text"
+                placeholder="País de Origen"
+                value={watch("destino")}
+                readOnly
+              />
+              <label htmlFor="origen">
+                <strong>Destino</strong>
+              </label>
+              <input
+                className="d-inline control-form w-50 align-text my-2 bg-with bg-gradient border border-dark rounded-pill"
+                type="text"
+                placeholder="País de Destino"
+                value={watch("origen")}
+                readOnly
+              />
+            </div>
           </>
         )}
 
-        <button className="btn btn-primary" type="submit">
+        <button className="btn btn-light" type="submit">
           Editar Pasajero
         </button>
       </form>
